@@ -28,7 +28,7 @@ int main(int argc, char *argv[]){
 		    	if(persona.age < limite){
 		    		write(fd2, &persona, sizeof(Person));
                     	}
-		    	else if(persona.age > limite){
+		    	else if(persona.age >= limite){
 		    		write(fd3, &persona, sizeof(Person));
                     	}
 		    }

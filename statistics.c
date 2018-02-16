@@ -1,6 +1,4 @@
 #include "persona.h"
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -13,6 +11,7 @@ int main(int argc, char *argv[]){
     
     Person persona; 
     int fd1  = open (argv[1], O_RDONLY);
+
     double renta = 0.0; //principal
     int edad = 0; //principal
     int contador = 0;
@@ -41,8 +40,8 @@ int main(int argc, char *argv[]){
 	printf("Renta media: %.0f\n",(renta/contador));	
 	printf("Edad media: %d\n",edad/contador);
 	contador = 0;
+	aux_numerico = (palabra_repetida(auxiliar));
    	while(read(fd1, &persona, sizeof(Person))!= 0){
-		aux_numerico = (palabra_repetida(auxiliar));
 		aux_numerico2 = persona.id_ctrl;
 		if(aux_numerico == aux_numerico2){
 			edad_dni = edad_dni + persona.age;
@@ -50,7 +49,7 @@ int main(int argc, char *argv[]){
 		}
 	}
 	printf("Caracter de control de DNI mas frecuente: %c\n",palabra_repetida(auxiliar));
-	printf("Edad media para el caracter de control de DNI más frecuente: %d\n",(edad_dni+1)/contador);
+	printf("Edad media para el caracter de control de DNI más frecuente: %d\n",(edad_dni)/contador);
 	close(fd1);
     }
     else
@@ -64,24 +63,34 @@ char palabra_repetida(char cadena[]){
 	char repetido;
 	int aux_a;
 	int aux_b;
+	int aux_contador = 0;
 	for(int i = 0; i <strlen(cadena); i++){
 		int contador = 0;
-		for(int j = i+1; j < strlen(cadena); j++){
-			if(cadena[j] == cadena[i]){
+		for(int j = 0; j < strlen(cadena); j++){
+			if(cadena[j] == cadena[i] && i != j){
 				contador++;
 			}
 		}
 		if(contador > mayor){
 			repetido = cadena[i];
 			mayor = contador;
+			aux_contador = 1;
 		}
 		else if(contador == mayor){
-			aux_a = cadena[i];
-			aux_b = repetido;
-			if(aux_a < aux_b){
+			if(aux_contador == 0){
 				repetido = cadena[i];
-				mayor = contador;
+				mayor = aux_contador;
+				aux_contador = 1;
 			}
+			else{
+				aux_a = cadena[i];
+				aux_b = repetido;
+				if(aux_a < aux_b){
+					repetido = cadena[i];
+					mayor = contador;
+				}
+			}
+			
 		}
 	}
 

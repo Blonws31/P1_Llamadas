@@ -1,6 +1,4 @@
 #include "persona.h"
-#include <sys/types.h>
-#include <sys/stat.h> 
 #include <fcntl.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -12,13 +10,13 @@ int main(int argc, char *argv[]){
     Person persona; 
     char *busqueda = argv[1];
     int fd2 = open (argv[2], O_RDONLY);
-    int fd3 = open (argv[3], O_RDWR | O_CREAT | O_TRUNC | O_APPEND);
+    int fd3 = open (argv[3], O_RDWR | O_CREAT | O_TRUNC);
 
     if(argc!=4){
 	printf("Numero de argumentos invalidos\n");
 	exit(1);
     }
-
+	
     if (fd2 != -1){
 	while(read(fd2, &persona, sizeof(Person))!= 0){
 		if(fd3 != -1){

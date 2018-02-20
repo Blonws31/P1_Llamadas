@@ -39,7 +39,7 @@ int main(int argc, char *argv[]){
     }
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-        if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/	
+        if((datosFichero.st_size%sizeof(Person))==0){             /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/	
 		int i = 0;
 
 		/*Mientras queden datos por leer en el archivo*/

@@ -37,29 +37,30 @@ int main(int argc, char *argv[]){
     }
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-      if((datosFichero.st_size%sizeof(Person))==0){             /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/    
-        /*Mientras queden datos por leer en el archivo*/
-        while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
-          if(ficheroSalida != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-              /*Por cada persona que tenga un caracter de control igual al especificao*/
-        if(persona.id_ctrl == toupper(*caracterDeControl)){
-          /*Escribe informacion a archivo de salida*/
-          write(ficheroSalida, &persona, sizeof(Person));
-        }
+        if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/    
+          
+          /*Mientras queden datos por leer en el archivo*/
+          while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
+            if(ficheroSalida != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
+                /*Por cada persona que tenga un caracter de control igual al especificao*/
+              if(persona.id_ctrl == toupper(*caracterDeControl)){
+                /*Escribe informacion a archivo de salida*/
+                write(ficheroSalida, &persona, sizeof(Person));
+              }
+            }
+            else{ /*Indica error si el archivo no existe o no se puede abrir*/
+                printf("Error en el segundo fichero. Por favor intentelo de nuevo.\n");
+            }
           }
-          else{ /*Indica error si el archivo no existe o no se puede abrir*/
-              printf("Error en el segundo fichero. Por favor intentelo de nuevo.\n");
-          }
+          
+          /*Cierra el archivo despues de usarlo*/
+          close(ficheroFuente);
+          close(ficheroSalida);
         }
-        
-        /*Cierra el archivo despues de usarlo*/
-        close(ficheroFuente);
-        close(ficheroSalida);
-  }
-     else{ /*Indica error si el tamaño del archivo no es valido*/
-    printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
-    return -1;  
-  }
+       else{ /*Indica error si el tamaño del archivo no es valido*/
+          printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
+          return -1;  
+        }
     }
     else{ /*Indica error si el archivo no existe o no se puede abrir*/
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");

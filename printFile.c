@@ -18,6 +18,7 @@ int main(int argc, char *argv[]){
     /*Abrir el fichero pasado como parametro y crear referencia a travez ficheroConFuente*/ 
     int ficheroFuente = open(argv[1], O_RDONLY); 
     
+    /*Usar buffer para evitar imprimir basura*/
     char buffer[sizeof(persona.name) + 1] = "\0";
     
     /*Validar los parametros esperados como entrada*/
@@ -27,29 +28,27 @@ int main(int argc, char *argv[]){
     }
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-        if((datosFichero.st_size%sizeof(Person))==0){             /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/  
-        /*Mientras queden datos por leer en el archivo*/
+        if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/  
+            /*Mientras queden datos por leer en el archivo*/
             while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
+                /*Usar buffer para evitar que se imprima basura*/
+                memcpy(buffer, persona.name, sizeof(persona.name));
 
-            /*Usar buffer para evitar que se imprima basura*/
-            memcpy(buffer, persona.name, sizeof(persona.name));
+                /*Impremelos a la consola usando los componentes de la struct Person*/
+                printf("%s\t%d\t%.08d\t%c\t%.0f \n", buffer, persona.age, persona.id, persona.id_ctrl, persona.salary); 
+            }
 
-            /*Impremelos a la consola usando los componentes de la struct Person*/
-            printf("%s\t%d\t%.08d\t%c\t%.0f \n", buffer, persona.age, persona.id, persona.id_ctrl, persona.salary); 
+            /*Cierra el archivo despues de usarlo*/
+            close(ficheroFuente);
         }
-
-        /*Cierra el archivo despues de usarlo*/
-        close(ficheroFuente);
-    }
-    else{ /*Indica error si el tamaño del archivo no es valido*/
-        printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
-        return -1;  
-    }
-        
+        else{ /*Indica error si el tamaño del archivo no es valido*/
+            printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
+            return -1;  
+        }
     }
     else{ /*Indica error si el archivo no existe o no se puede abrir*/
         printf("El archivo no existe o no se puede abrir. Por favor intentelo de nuevo.\n");
-    return -1;
+        return -1;
     }
       
     return 0; /*Terminar el programa satiscactoriamente*/ 

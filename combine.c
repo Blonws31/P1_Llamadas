@@ -34,11 +34,12 @@ int main(int argc, char *argv[]){
 
     /*Si el archivo fue encontrado y se abrio correctament*/
     if (ficheroEntrada1 != -1){
+    	
 		if(ficheroEntrada2 != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
 
-    		if((datosPrimerFichero.st_size%sizeof(Person))==0){             /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		
+    		if((datosPrimerFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		
 				
-				if((datosSegundoFichero.st_size%sizeof(Person)) == 0){		/*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/
+				if((datosSegundoFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/
 
 		    		/*Mientras queden datos por leer en el archivo*/
 					while(read(ficheroEntrada1, &persona1, sizeof(Person)) != 0){	
@@ -89,21 +90,20 @@ int main(int argc, char *argv[]){
 					close(ficheroEntrada1);
 					close(ficheroEntrada2);
 					close(ficheroSalida);
-			}
-			else{ /*Indica error si el tamaño del archivo no es valido*/
-				printf("El tamaño del segundo archivo no es valido. Por favor intentelo de nuevo\n");
+				}
+				else{ /*Indica error si el tamaño del archivo no es valido*/
+					printf("El tamaño del segundo archivo no es valido. Por favor intentelo de nuevo\n");
+					return -1;	
+			   	}
+		    }
+		    else{ /*Indica error si el tamaño del archivo no es valido*/
+				printf("El tamaño del primer archivo no es valido. Por favor intentelo de nuevo\n");
 				return -1;	
-		   	}
-	    }
-	    else{ /*Indica error si el tamaño del archivo no es valido*/
-			printf("El tamaño del primer archivo no es valido. Por favor intentelo de nuevo\n");
-			return -1;	
-	    }
-	}
-    else{ /*Indica error si el archivo no existe o no se puede abrir*/
-		printf("No se pudo abrir el segundo archivo. Por favor intentelo de nuevo.\n");	
-	}
-
+		    }
+		}
+	    else{ /*Indica error si el archivo no existe o no se puede abrir*/
+			printf("No se pudo abrir el segundo archivo. Por favor intentelo de nuevo.\n");	
+		}
     }
     else{ /*Indica error si el archivo no existe o no se puede abrir*/
         printf ("No se pudo abrir el archivo. Por favor intentelo de nuevo.\n");

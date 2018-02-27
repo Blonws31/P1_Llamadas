@@ -15,11 +15,12 @@ int main(int argc, char *argv[]){
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
-    stat(argv[2],&datosFichero);
+    stat(argv[2], &datosFichero);
 
     /*Guardar el valor del primer argumento*/
     int edadLimite = 0;
     char *p;
+
     /*Verificar que sea un entero*/
 	if(isDigit(argv[1]) == 0){
 		printf("Primero argumente tiene que ser un entero. Por favor intentelo de nuevo.\n");
@@ -48,41 +49,44 @@ int main(int argc, char *argv[]){
     }
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-	if((datosFichero.st_size%sizeof(Person))==0){             /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		
-    	/*Mientras queden datos por leer en el archivo*/
-		while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
-			if(ficheroSalidaMenores != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
-			    /*Si el archivo fue encontrado y se abrio correctament*/
-			    if(ficheroSalidaMayores != -1){ 
-			    	/*Si la edad es menor que edadLimite, escribe datos a ficheroSalidaMenores*/
-			    	if(persona.age < edadLimite){
-			    		write(ficheroSalidaMenores, &persona, sizeof(Person));
-                	}
-                	/*Si la edad es mayor que edadLimite, escribe datos a ficheroSalidaMayores*/
-			    	else if(persona.age >= edadLimite){
-			    		write(ficheroSalidaMayores, &persona, sizeof(Person));
-                	}
-			    }
-			    else{ /*Indica error si el archivo no existe o no se puede abrir*/
-				    printf("Error en el tercer fichero. Por favor intentelo de nuevo.\n");
-					return -1;
-			    }	
+		if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		
+	    	
+	    	/*Mientras queden datos por leer en el archivo*/
+			while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
+				if(ficheroSalidaMenores != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
+				    
+				    /*Si el archivo fue encontrado y se abrio correctament*/
+				    if(ficheroSalidaMayores != -1){ 
+				    	
+				    	/*Si la edad es menor que edadLimite, escribe datos a ficheroSalidaMenores*/
+				    	if(persona.age < edadLimite){
+				    		write(ficheroSalidaMenores, &persona, sizeof(Person));
+	                	}
+	                	/*Si la edad es mayor que edadLimite, escribe datos a ficheroSalidaMayores*/
+				    	else if(persona.age >= edadLimite){
+				    		write(ficheroSalidaMayores, &persona, sizeof(Person));
+	                	}
+				    }
+				    else{ /*Indica error si el archivo no existe o no se puede abrir*/
+					    printf("Error en el tercer fichero. Por favor intentelo de nuevo.\n");
+						return -1;
+				    }	
+				}
+				else{ /*Indica error si el archivo no existe o no se puede abrir*/
+				    printf("Error en el segundo fichero. Por favor intentelo de nuevo.\n");
+				    return -1;
+				}
 			}
-			else{ /*Indica error si el archivo no existe o no se puede abrir*/
-			    printf("Error en el segundo fichero. Por favor intentelo de nuevo.\n");
-			    return -1;
-			}
+		    
+		    /*Cierra el archivo despues de usarlo*/
+		    close(ficheroFuente);
+		    close(ficheroSalidaMenores);
+		    close(ficheroSalidaMayores);
 		}
-	    
-	    /*Cierra el archivo despues de usarlo*/
-	    close(ficheroFuente);
-	    close(ficheroSalidaMenores);
-	    close(ficheroSalidaMayores);
-	}
-	else{ /*Indica error si el tamaño del archivo no es valido*/
-		printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
-		return -1;	
-	}
+		else{ /*Indica error si el tamaño del archivo no es valido*/
+			printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
+			return -1;	
+		}
     }
     else{
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");

@@ -89,6 +89,7 @@ int main(int argc, char *argv[]){
     }
     else{/*Indica error si el archivo no existe o no se puede abrir*/
         printf ("No se pudo abrir el archivo. Por favor intentelo de nuevo.\n");
+        return -1;
     }
 
 	int pruebasFallidas = pruebasParaEncuentraCaracterMasFrecuente();

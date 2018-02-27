@@ -14,7 +14,7 @@ int main(int argc, char *argv[]){
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
-    stat(argv[2],&datosFichero);
+    stat(argv[2], &datosFichero);
 
     /*Guardar caracter de control y verificar que sea solo un caracter*/
     char *caracterDeControl;
@@ -28,8 +28,8 @@ int main(int argc, char *argv[]){
 
     /*Abrir ficheroFuente y crear archivoSalida*/
     int ficheroFuente = open (argv[2], O_RDONLY);
-    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_TRUNC); /*Si el archivo no existe, se crea y si ya existe, se sobreescribe la informacion*/
-
+    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, se sobreescribe la informacion*/
+    
     /*Validar cantidad de argumentos*/
     if(argc != 4){
       printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");

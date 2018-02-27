@@ -13,7 +13,7 @@ int main(int argc, char *argv[]){
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
-    stat(argv[1],&datosFichero);
+    stat(argv[1], &datosFichero);
 
     /*Abrir el fichero pasado como parametro y crear referencia a travez ficheroConFuente*/ 
     int ficheroFuente = open(argv[1], O_RDONLY); 

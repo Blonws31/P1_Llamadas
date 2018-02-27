@@ -92,8 +92,9 @@ int main(int argc, char *argv[]){
         return -1;
     }
 
-	int pruebasFallidas = pruebasParaEncuentraCaracterMasFrecuente();
-	printf("Cantidad de pruebas fallidas: %d\n", pruebasFallidas);
+    /*Pruebas automaticas*/
+	/*int pruebasFallidas = pruebasParaEncuentraCaracterMasFrecuente();
+	printf("Cantidad de pruebas fallidas: %d\n", pruebasFallidas);*/
     
 	return 0; /*Terminar el programa satiscactoriamente*/
 }
@@ -154,7 +155,6 @@ int pruebasParaEncuentraCaracterMasFrecuente(){
 	char cadena3[11] = {'Z', 'Z', 'P', 'P', 'K', 'B', 'B', 'C', 'C', 'D', '\0'};
 	int resultadoEsperado3 = 'B';
 	int resultadoActual3 = encuentraCaracterMasFrecuente(cadena3);
-	printf("Caracter de control de DNI mas frecuente: %c\n", resultadoActual3);
 	if(resultadoActual3 != resultadoEsperado3){
 		pruebasFallidas++;
 	}

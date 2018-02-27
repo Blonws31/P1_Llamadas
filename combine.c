@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     /*Abrir o crear los archivos especificados*/
     int ficheroEntrada1 = open (argv[1], O_RDONLY);
     int ficheroEntrada2 = open (argv[2], O_RDONLY);
-    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_TRUNC);
+    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
 
     /*Index para moverse entre el tamano del fichero y 0*/
     int fichero1Index = 0;
@@ -34,7 +34,7 @@ int main(int argc, char *argv[]){
 
     /*Si el archivo fue encontrado y se abrio correctament*/
     if (ficheroEntrada1 != -1){
-    	
+
 		if(ficheroEntrada2 != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
 
     		if((datosPrimerFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		

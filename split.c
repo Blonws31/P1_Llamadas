@@ -10,13 +10,13 @@ int isDigit(char input[]);
 
 int main(int argc, char *argv[]){
     /*Crear intancia de Person struct para guardar informacion de personas*/ 	
-    Person persona; 
+    Person persona;
 
     /*Validar cantidad de argumentos*/
     if(argc != 5){
 		printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
 		exit(-1);
-    }
+    } 
 
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
@@ -45,8 +45,8 @@ int main(int argc, char *argv[]){
     /*Guardar el resto de los argumentos esperados*/
     /*Abrir o crear los archivos especificados*/
     int ficheroFuente = open (argv[2], O_RDONLY);
-    int ficheroSalidaMenores = open (argv[3], O_RDWR  | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
-    int ficheroSalidaMayores = open (argv[4], O_RDWR  | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
+    int ficheroSalidaMenores = open (argv[3], O_RDWR  | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
+    int ficheroSalidaMayores = open (argv[4], O_RDWR  | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
 		if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		

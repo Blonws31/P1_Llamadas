@@ -20,7 +20,7 @@ int main(int argc, char *argv[]){
     char *caracterDeControl;
     if(strlen(argv[1]) > 1 || atoi(argv[1]) != 0){
       printf("El caracter de control es incorrecto. Por favor intentelo de nuevo.\n");
-      return -1;
+      exit(-1);
     }
     else{
       caracterDeControl = argv[1];
@@ -33,7 +33,7 @@ int main(int argc, char *argv[]){
     /*Validar cantidad de argumentos*/
     if(argc != 4){
       printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
-      return -1;
+      exit(-1);
     }
 
     if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
@@ -59,7 +59,7 @@ int main(int argc, char *argv[]){
         }
        else{ /*Indica error si el tamaño del archivo no es valido*/
           printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
-          return -1;  
+          exit(-1);  
         }
     }
     else{ /*Indica error si el archivo no existe o no se puede abrir*/

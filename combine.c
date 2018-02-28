@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     /*Abrir o crear los archivos especificados*/
     int ficheroEntrada1 = open (argv[1], O_RDONLY);
     int ficheroEntrada2 = open (argv[2], O_RDONLY);
-    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
+    int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
 
     /*Index para moverse entre el tamano del fichero y 0*/
     int fichero1Index = 0;
@@ -93,12 +93,12 @@ int main(int argc, char *argv[]){
 				}
 				else{ /*Indica error si el tamaño del archivo no es valido*/
 					printf("El tamaño del segundo archivo no es valido. Por favor intentelo de nuevo\n");
-					return -1;	
+					exit(-1);	
 			   	}
 		    }
 		    else{ /*Indica error si el tamaño del archivo no es valido*/
 				printf("El tamaño del primer archivo no es valido. Por favor intentelo de nuevo\n");
-				return -1;	
+				exit(-1);	
 		    }
 		}
 	    else{ /*Indica error si el archivo no existe o no se puede abrir*/

@@ -13,8 +13,8 @@ int main(int argc, char *argv[]){
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosPrimerFichero;
     struct stat datosSegundoFichero;
-    stat(argv[2],&datosPrimerFichero);
-    stat(argv[3],&datosSegundoFichero);
+    stat(argv[1], &datosPrimerFichero);
+    stat(argv[2], &datosSegundoFichero);
 
     /*Validar cantidad de argumentos*/
     if(argc != 4){

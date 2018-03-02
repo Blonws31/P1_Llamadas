@@ -14,6 +14,7 @@ int main(int argc, char *argv[]){
     struct stat datosPrimerFichero;
     struct stat datosSegundoFichero;
 <<<<<<< HEAD
+<<<<<<< HEAD
     stat(argv[2],&datosPrimerFichero);
     stat(argv[3],&datosSegundoFichero);
 
@@ -25,6 +26,8 @@ int main(int argc, char *argv[]){
 	printf("Numero de argumentos invalidos\n");
 	return -1;
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     stat(argv[1], &datosPrimerFichero);
     stat(argv[2], &datosSegundoFichero);
 
@@ -32,7 +35,10 @@ int main(int argc, char *argv[]){
     if(argc != 4){
 		printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
 		exit(-1);
+<<<<<<< HEAD
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     }
 
     /*Guardar el resto de los argumentos esperados*/
@@ -41,6 +47,7 @@ int main(int argc, char *argv[]){
     int ficheroEntrada2 = open (argv[2], O_RDONLY);
     int ficheroSalida = open (argv[3], O_RDWR | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     if (fd1 != -1){
 	if(fd2 != -1){
@@ -112,6 +119,8 @@ int main(int argc, char *argv[]){
 
     return 0;
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     /*Index para moverse entre el tamano del fichero y 0*/
     int fichero1Index = 0;
     int fichero2Index = 0;
@@ -194,5 +203,8 @@ int main(int argc, char *argv[]){
     }
 
     return 0; /*Terminar el programa satiscactoriamente*/ 
+<<<<<<< HEAD
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 }

@@ -12,6 +12,7 @@ int main(int argc, char *argv[]){
     Person persona; 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
@@ -69,6 +70,8 @@ int main(int argc, char *argv[]){
     return 0;
 }
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     /*Validar cantidad de argumentos*/
     if(argc != 4){
       printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
@@ -123,7 +126,10 @@ int main(int argc, char *argv[]){
     else{ /*Indica error si el archivo no existe o no se puede abrir*/
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");
     }
+<<<<<<< HEAD
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 
     return 0;
 }

@@ -7,10 +7,14 @@
 #include <string.h>
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 int main(int argc, char *argv[]){	
 =======
 int main(int argc, char *argv[]){   
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+int main(int argc, char *argv[]){   
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     /*Crear intancia de Person struct para guardar informacion de personas*/ 
     Person persona; 
 
@@ -18,22 +22,31 @@ int main(int argc, char *argv[]){
     struct stat datosFichero;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     stat(argv[1],&datosFichero);
 =======
     stat(argv[1], &datosFichero);
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+    stat(argv[1], &datosFichero);
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 
     /*Abrir el fichero pasado como parametro y crear referencia a travez ficheroConFuente*/ 
     int ficheroFuente = open(argv[1], O_RDONLY); 
     
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     /*Usar buffer para evitar imprimir basura*/
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+    /*Usar buffer para evitar imprimir basura*/
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     char buffer[sizeof(persona.name) + 1] = "\0";
     
     /*Validar los parametros esperados como entrada*/
     if (argc != 2){
+<<<<<<< HEAD
 <<<<<<< HEAD
     	printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
     	exit(-1);
@@ -68,6 +81,8 @@ int main(int argc, char *argv[]){
     return 0; /*Terminar el programa satiscactoriamente*/ 
 }
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
         printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
         exit(-1);
     }
@@ -97,5 +112,9 @@ int main(int argc, char *argv[]){
     }
       
     return 0; /*Terminar el programa satiscactoriamente*/ 
+<<<<<<< HEAD
 }
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+}
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28

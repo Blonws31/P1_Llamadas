@@ -11,8 +11,11 @@ int isDigit(char input[]);
 int main(int argc, char *argv[]){
     /*Crear intancia de Person struct para guardar informacion de personas*/ 	
 <<<<<<< HEAD
+<<<<<<< HEAD
     Person persona; 
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
     Person persona;
 
     /*Validar cantidad de argumentos*/
@@ -20,20 +23,28 @@ int main(int argc, char *argv[]){
 		printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
 		exit(-1);
     } 
+<<<<<<< HEAD
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     stat(argv[2],&datosFichero);
 =======
     stat(argv[2], &datosFichero);
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+    stat(argv[2], &datosFichero);
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 
     /*Guardar el valor del primer argumento*/
     int edadLimite = 0;
     char *p;
+<<<<<<< HEAD
 <<<<<<< HEAD
     /*Verificar que sea un entero*/
 	if(isDigit(argv[1]) == 0){
@@ -103,6 +114,8 @@ int main(int argc, char *argv[]){
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");
     }
 =======
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
 
     /*Verificar que sea un entero*/
 	if(isDigit(argv[1]) == 0){
@@ -168,7 +181,10 @@ int main(int argc, char *argv[]){
     else{
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");
     }
+<<<<<<< HEAD
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28
       
  	return 0;
 }
@@ -185,7 +201,11 @@ int isDigit(char input[]){
 
     return 1;
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
 =======
 }
 >>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
+=======
+}
+>>>>>>> 171514abfa8341571db85e9a1462dd254f7eab28

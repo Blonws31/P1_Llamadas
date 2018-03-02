@@ -10,16 +10,31 @@ int isDigit(char input[]);
 
 int main(int argc, char *argv[]){
     /*Crear intancia de Person struct para guardar informacion de personas*/ 	
+<<<<<<< HEAD
     Person persona; 
+=======
+    Person persona;
+
+    /*Validar cantidad de argumentos*/
+    if(argc != 5){
+		printf("Numero de argumentos invalidos. Por favor intentelo de nuevo.\n");
+		exit(-1);
+    } 
+>>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
 
     /*Crear instancia de stat struct para obtener informacion del archivo*/    
     struct stat datosFichero;
 
+<<<<<<< HEAD
     stat(argv[2],&datosFichero);
+=======
+    stat(argv[2], &datosFichero);
+>>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
 
     /*Guardar el valor del primer argumento*/
     int edadLimite = 0;
     char *p;
+<<<<<<< HEAD
     /*Verificar que sea un entero*/
 	if(isDigit(argv[1]) == 0){
 		printf("Primero argumente tiene que ser un entero. Por favor intentelo de nuevo.\n");
@@ -87,6 +102,73 @@ int main(int argc, char *argv[]){
     else{
         printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");
     }
+=======
+
+    /*Verificar que sea un entero*/
+	if(isDigit(argv[1]) == 0){
+		printf("Primer argumento tiene que ser un entero positivo. Por favor intentelo de nuevo.\n");
+		exit(-1);
+	}
+    else{
+    	edadLimite = strtol(argv[1], &p, 10);
+
+    	/*Verificar que la edad limite este en el rango logico*/
+    	if(edadLimite > 150){
+    		printf("Edad limite tiene que ser entre 0 y 150. Por favor intentelo de nuevo.\n");
+    		exit(-1);
+    	}
+    }
+    
+    /*Guardar el resto de los argumentos esperados*/
+    /*Abrir o crear los archivos especificados*/
+    int ficheroFuente = open (argv[2], O_RDONLY);
+    int ficheroSalidaMenores = open (argv[3], O_RDWR  | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
+    int ficheroSalidaMayores = open (argv[4], O_RDWR  | O_CREAT | O_APPEND, S_IRUSR | S_IWUSR); /*Si el archivo no existe, se crea y si ya existe, la informacion se añade al final*/
+
+    if (ficheroFuente != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
+		if((datosFichero.st_size % sizeof(Person)) == 0){ /*Valida que el archivo tenga el tamano apropiado respecto a struct Person*/		
+	    	
+	    	/*Mientras queden datos por leer en el archivo*/
+			while(read(ficheroFuente, &persona, sizeof(Person)) != 0){
+				if(ficheroSalidaMenores != -1){ /*Si el archivo fue encontrado y se abrio correctament*/
+				    
+				    /*Si el archivo fue encontrado y se abrio correctament*/
+				    if(ficheroSalidaMayores != -1){ 
+				    	
+				    	/*Si la edad es menor que edadLimite, escribe datos a ficheroSalidaMenores*/
+				    	if(persona.age < edadLimite){
+				    		write(ficheroSalidaMenores, &persona, sizeof(Person));
+	                	}
+	                	/*Si la edad es mayor que edadLimite, escribe datos a ficheroSalidaMayores*/
+				    	else if(persona.age >= edadLimite){
+				    		write(ficheroSalidaMayores, &persona, sizeof(Person));
+	                	}
+				    }
+				    else{ /*Indica error si el archivo no existe o no se puede abrir*/
+					    printf("Error en el tercer fichero. Por favor intentelo de nuevo.\n");
+						exit(-1);
+				    }	
+				}
+				else{ /*Indica error si el archivo no existe o no se puede abrir*/
+				    printf("Error en el segundo fichero. Por favor intentelo de nuevo.\n");
+				    exit(-1);
+				}
+			}
+		    
+		    /*Cierra el archivo despues de usarlo*/
+		    close(ficheroFuente);
+		    close(ficheroSalidaMenores);
+		    close(ficheroSalidaMayores);
+		}
+		else{ /*Indica error si el tamaño del archivo no es valido*/
+			printf("El tamaño del archivo no es valido. Por favor intentelo de nuevo\n");
+			exit(-1);	
+		}
+    }
+    else{
+        printf ("Error en el primer fichero. Por favor intentelo de nuevo.\n");
+    }
+>>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
       
  	return 0;
 }
@@ -102,4 +184,8 @@ int isDigit(char input[]){
     }
 
     return 1;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 06916fd1ec4a8e8b917e154e8b94e6bdf0586ac9
